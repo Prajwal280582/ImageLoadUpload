@@ -46,11 +46,12 @@ namespace ImageLoadUpload
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseSwagger();
-            app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ImageLoadUpload v1");
-                c.RoutePrefix = string.Empty;
-                }); 
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ImageLoadUpload v1");
+                });
+
             
 
             app.UseHttpsRedirection();

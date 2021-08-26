@@ -19,6 +19,7 @@ namespace ImageLoadUpload.Logics
         public async Task Upload(ImageModel model)
         {
             var blobContainer = _blobServiceClient.GetBlobContainerClient("imageupload");
+            
             var blobClient = blobContainer.GetBlobClient(model.ImageFile.FileName);
             await blobClient.UploadAsync(model.ImageFile.OpenReadStream());
         }
