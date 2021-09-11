@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Azure.Storage.Blobs;
 using ImageLoadUpload.Models;
 using System;
+using Azure.Storage.Blobs.Specialized;
+using System.Collections.Generic;
 
 namespace ImageLoadUpload.Logics
 {
@@ -32,6 +34,8 @@ namespace ImageLoadUpload.Logics
                 var blobContainer = _blobServiceClient.GetBlobContainerClient("imageupload");
                 var blobClient = blobContainer.GetBlobClient(ImageName);
 
+             
+
                 using (MemoryStream ms = new MemoryStream())
                 {
                     await blobClient.DownloadToAsync(ms);
@@ -41,6 +45,36 @@ namespace ImageLoadUpload.Logics
             {
                 Console.WriteLine(Ex.Message);
                     return null;
+            }
+        }
+
+        public List<Uri> GetAll()
+        {
+            try
+            {
+                var blobContainer = _blobServiceClient.GetBlobContainerClient("thumbnails");
+                var blobClient = blobContainer.GetBlobs();
+
+                List<Uri> uriList = new List<Uri>();
+
+
+                foreach (var item in blobClient)
+                {
+                    string name = item.Name;
+                    BlockBlobClient blockBlob = blobContainer.GetBlockBlobClient(name);
+                    uriList.Add(blockBlob.Uri);
+
+
+                }
+                return uriList;
+
+
+                
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.Message);
+                return null;
             }
         }
 

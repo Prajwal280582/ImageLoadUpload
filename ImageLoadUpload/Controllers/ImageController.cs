@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using ImageLoadUpload.Models;
 using ImageLoadUpload.Logics;
+using System.Collections.Generic;
 
 namespace ImageLoadUpload.Controllers
 {
@@ -44,6 +45,22 @@ namespace ImageLoadUpload.Controllers
            
         }
 
+        [Route("getall")]
+        [HttpPost]
+        public List<Uri> GetAll()
+        {
+            try
+            {
+                var listUri = _imageManagerLogic.GetAll();
+                return listUri;
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.Message);
+                return null;
+            }
+
+        }
 
         [Route("delete")]
         [HttpGet]

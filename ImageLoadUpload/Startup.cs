@@ -36,7 +36,7 @@ namespace ImageLoadUpload
             services.AddControllers();
 
             services.AddScoped<IImageManagerLogic, ImageManagerLogic>();
-            //services.AddScoped<ICosmosDbService, CosmosDbLogic>();
+           
 
             services.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
 
@@ -45,17 +45,17 @@ namespace ImageLoadUpload
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
             
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
               {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "ImageLoadUpload v1");
-                    c.RoutePrefix = string.Empty;
+                   // c.RoutePrefix = string.Empty;
               });
 
             
