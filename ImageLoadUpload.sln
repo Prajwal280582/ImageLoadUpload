@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageLoadUpload", "ImageLoadUpload\ImageLoadUpload.csproj", "{E02CD62E-3E09-4A56-8B41-47F2101EE332}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "imageupload.ui", "..\..\Project Folder\imageupload\imageupload-ui\imageupload.ui.csproj", "{DAA30953-F17E-4021-8837-6B3128DA9F22}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "imageResizeFunctionApp", "imageResizeFunctionApp\imageResizeFunctionApp.csproj", "{4C3ACDE4-0B25-408B-845C-943710D12E99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "imageupload.ui", "..\imageupload-ui\imageupload.ui.csproj", "{E59960E5-D808-4F02-9449-F5FBE30EB746}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,6 @@ Global
 		{E02CD62E-3E09-4A56-8B41-47F2101EE332}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E02CD62E-3E09-4A56-8B41-47F2101EE332}.Release|x86.ActiveCfg = Release|x86
 		{E02CD62E-3E09-4A56-8B41-47F2101EE332}.Release|x86.Build.0 = Release|x86
-		{DAA30953-F17E-4021-8837-6B3128DA9F22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DAA30953-F17E-4021-8837-6B3128DA9F22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DAA30953-F17E-4021-8837-6B3128DA9F22}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{DAA30953-F17E-4021-8837-6B3128DA9F22}.Debug|x86.Build.0 = Debug|Any CPU
-		{DAA30953-F17E-4021-8837-6B3128DA9F22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DAA30953-F17E-4021-8837-6B3128DA9F22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DAA30953-F17E-4021-8837-6B3128DA9F22}.Release|x86.ActiveCfg = Release|Any CPU
-		{DAA30953-F17E-4021-8837-6B3128DA9F22}.Release|x86.Build.0 = Release|Any CPU
 		{4C3ACDE4-0B25-408B-845C-943710D12E99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C3ACDE4-0B25-408B-845C-943710D12E99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C3ACDE4-0B25-408B-845C-943710D12E99}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -41,6 +33,14 @@ Global
 		{4C3ACDE4-0B25-408B-845C-943710D12E99}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C3ACDE4-0B25-408B-845C-943710D12E99}.Release|x86.ActiveCfg = Release|Any CPU
 		{4C3ACDE4-0B25-408B-845C-943710D12E99}.Release|x86.Build.0 = Release|Any CPU
+		{E59960E5-D808-4F02-9449-F5FBE30EB746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E59960E5-D808-4F02-9449-F5FBE30EB746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E59960E5-D808-4F02-9449-F5FBE30EB746}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E59960E5-D808-4F02-9449-F5FBE30EB746}.Debug|x86.Build.0 = Debug|Any CPU
+		{E59960E5-D808-4F02-9449-F5FBE30EB746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E59960E5-D808-4F02-9449-F5FBE30EB746}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E59960E5-D808-4F02-9449-F5FBE30EB746}.Release|x86.ActiveCfg = Release|Any CPU
+		{E59960E5-D808-4F02-9449-F5FBE30EB746}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
