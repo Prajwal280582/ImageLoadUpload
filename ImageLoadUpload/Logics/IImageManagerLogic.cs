@@ -10,7 +10,7 @@ namespace ImageLoadUpload.Logics
         Task Upload(ImageModel model);
         Task<byte[]> Get(string ImageName);
 
-        List<Uri> GetAll();
+        Task<List<Uri>> GetAll();
         Task Delete(string ImageName);
     }
 }

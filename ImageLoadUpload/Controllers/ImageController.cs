@@ -47,11 +47,11 @@ namespace ImageLoadUpload.Controllers
 
         [Route("getall")]
         [HttpPost]
-        public List<Uri> GetAll()
+        public async Task<List<Uri>> GetAll()
         {
             try
             {
-                var listUri = _imageManagerLogic.GetAll();
+                var listUri = await _imageManagerLogic.GetAll();
                 return listUri;
             }
             catch (Exception Ex)

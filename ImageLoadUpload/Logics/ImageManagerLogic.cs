@@ -48,7 +48,7 @@ namespace ImageLoadUpload.Logics
             }
         }
 
-        public List<Uri> GetAll()
+        public async Task<List<Uri>> GetAll()
         {
             try
             {
@@ -57,15 +57,17 @@ namespace ImageLoadUpload.Logics
 
                 List<Uri> uriList = new List<Uri>();
 
-
-                foreach (var item in blobClient)
+                await Task.Run(() =>
                 {
-                    string name = item.Name;
-                    BlockBlobClient blockBlob = blobContainer.GetBlockBlobClient(name);
-                    uriList.Add(blockBlob.Uri);
+                    foreach (var item in blobClient)
+                    {
+                        string name = item.Name;
+                        BlockBlobClient blockBlob = blobContainer.GetBlockBlobClient(name);
+                        uriList.Add(blockBlob.Uri);
 
 
-                }
+                    }
+                });
                 return uriList;
 
 
