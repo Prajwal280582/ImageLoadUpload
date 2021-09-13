@@ -127,7 +127,7 @@ namespace ImageLoadUpload.Logics
                 await blobThumbClient.DeleteAsync();
 
                 
-                _mongoDbService.RemoveByName(thumbImageName);
+                _mongoDbService.RemoveByName(ImageName);
             }
             catch (Exception Ex)
             {
