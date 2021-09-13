@@ -2,14 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace ImageLoadUpload.Models
 {
     public class CosmosModel
     {
+        //Properties for storing image details in Cosmos Db - Sql Api
+
+        #region Properties
+
         [JsonPropertyName("id")]
         public string id { get; set; }
 
@@ -22,6 +24,8 @@ namespace ImageLoadUpload.Models
         [JsonPropertyName("imageUploadDate")]
         [BindProperty, DataType(DataType.Date)]
         public DateTime ImageUploadDate { set; get; }
+
+        #endregion
 
     }
 }

@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+
 
 namespace ImageLoadUpload.Models
 {
     public class ImageModel
     {
+        //Property to store image file on Azure Storage container
         public IFormFile ImageFile { set; get; }
     }
 }

@@ -1,64 +1,105 @@
 ﻿using ImageLoadUpload.Logics;
 using ImageLoadUpload.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ImageLoadUpload.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CosmosController : ControllerBase
     {
         private readonly ICosmosDbService _cosmosDbService;
+
+        //Initializing the Cosmos DB logic using constructor
+
         public CosmosController(ICosmosDbService cosmosDbService)
         {
             _cosmosDbService = cosmosDbService ?? throw new ArgumentNullException(nameof(cosmosDbService));
         }
-        
-        // GET api/items
+
+        // Api to get list of all items from the azure cosmos container
         [HttpGet]
         public async Task<IActionResult> List()
         {
-            return Ok(await _cosmosDbService.GetMultipleAsync("SELECT * FROM c"));
+            try
+            {
+                return Ok(await _cosmosDbService.GetMultipleAsync("SELECT * FROM c"));
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.Message);
+                return null;
+            }
         }
-        
-        // GET api/items/5
+
+        //  Api to get each item by id from the azure cosmos container
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
-            return Ok(await _cosmosDbService.GetAsync(id));
+            try
+            {
+                return Ok(await _cosmosDbService.GetAsync(id));
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.Message);
+                return null;
+            }
         }
-        // POST api/items
+
+
+        //  Api to add a item to the azure cosmos container
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CosmosModel item)
         {
-            if(item.id is null)
-            { 
-                item.id = Guid.NewGuid().ToString(); 
+            try
+            {
+                if (item.id is null)
+                {
+                    item.id = Guid.NewGuid().ToString();
+                }
+
+                await _cosmosDbService.AddAsync(item);
+                return CreatedAtAction(nameof(Get), new { id = item.id }, item);
             }
-            
-            await _cosmosDbService.AddAsync(item);
-            return CreatedAtAction(nameof(Get), new { id = item.id }, item);
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.Message);
+                return null;
+            }
         }
-        
-        // PUT api/items/5
+
+        //  Api to edit each item by id on the azure cosmos container
         [HttpPut("{id}")]
         public async Task<IActionResult> Edit([FromBody] CosmosModel item)
-        {
-            await _cosmosDbService.UpdateAsync(item.id, item);
-            return NoContent();
+        { 
+            try{
+                await _cosmosDbService.UpdateAsync(item.id, item);
+                return NoContent();
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.Message);
+                return null;
+            }
         }
-        
-        // DELETE api/items/5
+
+        //  Api to delete each item by id on the azure cosmos container
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            await _cosmosDbService.DeleteAsync(id);
-            return NoContent();
+            try
+            {
+                await _cosmosDbService.DeleteAsync(id);
+                return NoContent();
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.Message);
+                return null;
+            }
         }
     }
 }

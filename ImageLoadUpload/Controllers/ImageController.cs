@@ -3,7 +3,6 @@ using System;
 using System.Threading.Tasks;
 using ImageLoadUpload.Models;
 using ImageLoadUpload.Logics;
-using System.Collections.Generic;
 
 namespace ImageLoadUpload.Controllers
 {
@@ -11,24 +10,36 @@ namespace ImageLoadUpload.Controllers
     public class ImageController : ControllerBase
     {
         private readonly IImageManagerLogic _imageManagerLogic;
-      
+
+        //Initializing the image logics using constructor
         public ImageController(IImageManagerLogic imageManagerLogic)
         {
             _imageManagerLogic = imageManagerLogic;
+           
         }
 
-       [Route("upload")]
+        //Uploading Api for Multiple Image Upload
+       [Route("Upload")]
        [HttpPost]
        public async Task<IActionResult> Upload([FromForm] ImageModel model)
        {
-            if(model.ImageFile != null)
+            try
             {
-                await _imageManagerLogic.Upload(model);
+                if (model.ImageFile != null)
+                {
+                    await _imageManagerLogic.Upload(model);
+                }
+                return Ok();
             }
-            return Ok();
-       }
-       
-        [Route("get")]
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.Message);
+                return null;
+            }
+        }
+
+        //Api to fetch one image by name       
+        [Route("Get")]
         [HttpPost]
         public async Task<IActionResult> Get(string imageName)
         {
@@ -45,14 +56,15 @@ namespace ImageLoadUpload.Controllers
            
         }
 
-        [Route("getall")]
-        [HttpPost]
-        public async Task<List<Uri>> GetAll()
+        //Api to fetch all images present within the container
+        [Route("GetAll")]
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
         {
             try
             {
                 var listUri = await _imageManagerLogic.GetAll();
-                return listUri;
+                return Ok(listUri);
             }
             catch (Exception Ex)
             {
@@ -62,12 +74,22 @@ namespace ImageLoadUpload.Controllers
 
         }
 
-        [Route("delete")]
+        //Api to delete one image at a time
+        [Route("Delete")]
         [HttpGet]
         public async Task<IActionResult> Delete(string imageName)
         {
-            await _imageManagerLogic.Delete(imageName);
-            return Ok();
+            try
+            {
+                await _imageManagerLogic.Delete(imageName);
+                return Ok();
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.Message);
+                return null;
+            }
+
         }
     }
 
